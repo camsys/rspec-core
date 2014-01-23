@@ -88,6 +88,12 @@ module RSpec
       #   nil
       attr_accessor :ruby_opts
 
+      # Command line content before ruby (e.g. env vars)
+      #
+      # default:
+      #   nil
+      attr_accessor :pre_ruby
+
       # Path to rspec
       #
       # default:
@@ -170,6 +176,7 @@ module RSpec
 
       def spec_command
         cmd_parts = []
+        cmd_parts << pre_ruby
         cmd_parts << RUBY
         cmd_parts << ruby_opts
         cmd_parts << "-w" if @warning
